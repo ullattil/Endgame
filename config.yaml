@@ -1,0 +1,13 @@
+resume_path: data/master_resume.yaml
+style_samples_dir: data/style_samples
+output_dir: output
+db_path: applications.db
+
+# Per-step model config. Extraction and tailoring are structured/constrained tasks
+# (JSON tool-use, factual grounding against your resume) where Sonnet's precision
+# matters most. The cover letter is the one step where a model's "voice" and
+# creative writing strength actually matter, so it's set to Fable separately —
+# change any of these independently to test a different model per step.
+extraction_model: claude-sonnet-5
+tailoring_model: claude-sonnet-5
+cover_letter_model: claude-fable-5
