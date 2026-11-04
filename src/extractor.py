@@ -20,6 +20,14 @@ EXTRACTION_TOOL = {
                 "type": "string",
                 "enum": ["email", "company_portal", "third_party_ats", "unclear"],
             },
+            "job_location": {
+                "type": ["string", "null"],
+                "description": (
+                    "City (and province/state) where the role is based, as stated "
+                    "in the posting. Null if the posting doesn't say or the role "
+                    "is fully remote — don't guess from the employer's name."
+                ),
+            },
             "contact_email": {"type": ["string", "null"]},
             "portal_url": {"type": ["string", "null"]},
             "required_documents": {

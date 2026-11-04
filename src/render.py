@@ -30,7 +30,7 @@ def _tight(paragraph, space_after: int = 0):
 
 def _section_heading(doc, text: str):
     p = doc.add_paragraph()
-    p.paragraph_format.space_before = Pt(8)
+    p.paragraph_format.space_before = Pt(5)
     p.paragraph_format.space_after = Pt(2)
     run = p.add_run(text.upper())
     run.bold = True
@@ -53,7 +53,7 @@ def _entry_header(doc, left_text: str, right_text: str, usable_width):
     return p
 
 
-def _paragraph(doc, text: str, size: float = 9.5):
+def _paragraph(doc, text: str, size: float = 9.25):
     p = doc.add_paragraph(text)
     _tight(p)
     for run in p.runs:
@@ -66,7 +66,7 @@ def _bullet(doc, text: str):
     _tight(p)
     p.paragraph_format.left_indent = Inches(0.2)
     for run in p.runs:
-        run.font.size = Pt(9.5)
+        run.font.size = Pt(9.25)
     return p
 
 
@@ -74,10 +74,10 @@ def render_resume(resume: dict, out_path: Path) -> None:
     doc = Document()
 
     section = doc.sections[0]
-    section.top_margin = Inches(0.4)
-    section.bottom_margin = Inches(0.4)
-    section.left_margin = Inches(0.6)
-    section.right_margin = Inches(0.6)
+    section.top_margin = Inches(0.3)
+    section.bottom_margin = Inches(0.3)
+    section.left_margin = Inches(0.5)
+    section.right_margin = Inches(0.5)
     usable_width = section.page_width - section.left_margin - section.right_margin
 
     normal = doc.styles["Normal"]
