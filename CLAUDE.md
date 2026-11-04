@@ -15,7 +15,7 @@ voice, renders both to `.docx`, and stops for human review before anything is se
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 .venv/bin/playwright install chromium   # scraper.py will fail without this
-cp .env.example .env                     # then fill in ANTHROPIC_API_KEY for real use
+# create .env (gitignored) with ANTHROPIC_API_KEY=...; there is no .env.example, see README for the SMTP vars
 
 # Run
 .venv/bin/python -m src.cli apply "<job posting url>"

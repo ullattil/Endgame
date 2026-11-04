@@ -16,11 +16,10 @@ It deliberately **stops before submitting anything**. Portal applications get yo
 ```bash
 pip install -r requirements.txt
 playwright install chromium
-cp .env.example .env
 ```
 
-Then fill in:
-- `.env` — your `ANTHROPIC_API_KEY` (from https://console.anthropic.com/). SMTP fields are optional, only needed if you want to send email applications via `send`.
+Then set up:
+- `.env` — create this file in the project root (it's gitignored) containing `ANTHROPIC_API_KEY=...` (from https://console.anthropic.com/). To send email applications via `send`, also add `SMTP_HOST`, `SMTP_PORT`, `SMTP_USERNAME`, `SMTP_PASSWORD`, and `FROM_EMAIL`; for Gmail, use an [App Password](https://myaccount.google.com/apppasswords), not your real password. The SMTP values are optional otherwise.
 - `data/master_resume.yaml` — your real experience, structured. The tailoring step only rewords/reorders/trims these bullets; it won't fabricate new ones.
 - `data/style_samples/*.txt` — 5-10 samples of your own writing (past cover letters, application emails) so generated letters sound like you.
 

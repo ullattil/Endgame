@@ -45,7 +45,7 @@ def send_email(eml_path: Path, to_override: str = None) -> None:
     if not all([host, username, password, from_email]):
         raise RuntimeError(
             "SMTP_HOST, SMTP_USERNAME, SMTP_PASSWORD, and FROM_EMAIL must be set "
-            "in your environment (see .env.example) to send email."
+            "in your environment or .env file (see the README) to send email."
         )
 
     from email import message_from_bytes
