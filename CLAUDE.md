@@ -15,7 +15,7 @@ voice, renders both to `.docx`, and stops for human review before anything is se
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 .venv/bin/playwright install chromium   # scraper.py will fail without this
-cp .env.example .env                     # then fill in ANTHROPIC_API_KEY for real use
+# create .env (gitignored) with ANTHROPIC_API_KEY=...; there is no .env.example, see README for the SMTP vars
 
 # Run
 .venv/bin/python -m src.cli apply "<job posting url>"
@@ -74,6 +74,19 @@ scraper.py → extractor.py → resume_tailor.py → cover_letter.py → render.
   `osascript` to export a real paginated PDF for verification — this is more reliable than
   estimating line/word counts by hand. LibreOffice, Word, and `textutil -convert pdf` are not
   available in this environment for docx→pdf conversion.
+
+## Standing cover-letter facts
+
+Every generated cover letter must state (1) that the candidate is authorized to work in Canada, but
+only for jobs located in Canada (omit it, and any sponsorship talk, for jobs abroad), and (2) that
+they are relocating to the job's city (or already based there, if it's their current city). These
+are enforced in the pipeline, not just here:
+`contact.work_authorization` in `data/master_resume.yaml` is the source for (1); `job_location`,
+extracted by `extractor.py`, is the source for (2); `cover_letter.py`'s prompt requires both. If a
+posting has no stated location, the relocation line is skipped rather than guessed. Extra
+candidate-stated facts that belong only in cover letters go in `cover_letter_facts` in
+`master_resume.yaml` (not rendered on the resume). Editing this
+section alone changes nothing at runtime — change the pipeline code and data fields too.
 
 ## Working on this project
 
